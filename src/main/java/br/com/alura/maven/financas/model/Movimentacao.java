@@ -2,6 +2,7 @@ package br.com.alura.maven.financas.model;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,13 +10,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.google.protobuf.Timestamp;
-
 @Entity
+@NamedQuery(query="select avg(m.valor) from Movimentacao m where m.tipo = :pTipo " + 
+		"group by day(m.data), month(m.data), year(m.data)",name="getMediasPorDiaETipo")
 public class Movimentacao {
 	
 	@Id
@@ -35,6 +38,18 @@ public class Movimentacao {
 	@ManyToOne
 	private Conta conta;
 	
+
+	@ManyToMany
+	private List<Categoria> categoria;
+	
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
+
 	public Conta getConta() {
 		return conta;
 	}

@@ -1,0 +1,207 @@
+Todas as funcionalidades que estão sendo implementadas no sistema:
+
+Cadastro de produtos
+Cadastro de funcionários
+Cadastro de clientes
+Cadastro de fornecedores
+Cadastro de Contas
+
+Acesso por usuário e senha
+Busca clientes por nome, cpf, telefone ou endereço
+Busca por produto por leitor de codigo de barras, nome, numero de identificação, marca, modelo, 
+
+Controle de estoque
+Controle de entregas
+Controle de Pagamentos
+Fluxo de caixa
+Histórico de vendas
+Forma de pagamento
+vendas a prazo
+Emissão de nota (integração com impressora matricila???)
+
+Consulta de clientes
+Consulta de estoque
+Consulta de fornecedores
+Relatório de faturamento
+Relatório de produtos vendidos
+Relatório de produtos comprados
+Relatório de caixa
+Relatório de comissão por funcionário
+Relatorio de contas
+
+Contas a pagar
+Contas a receber
+Backup automático do sistema
+
+Porcetagem de desconto geral e por produto 
+
+Moda, Estética, Cabelo
+
+
+
+Moda
+1- Vestido: sub curto, mid, longo, sub p, m, g
+
+2- lusa P M G 
+
+3- body P M G
+
+4- Cropped P M G 
+
+5- Body P M G
+
+6- Short P M G , 34 , 36 , 38 , 40 , 42
+
+7- Short saia P M G, 34 , 36 , 38 , 40 , 42
+
+8- Macacão P M G, 34 , 36 , 38 , 40 , 42 curto , longo ( se der pra por as opções das medidas juntas é bom ter as opções de tamanho) 
+
+9- Calça P M G 34 , 36 , 38 , 40 , 42  flear, jeans, leagg 
+
+10- Colete P M G 
+
+11- Sobretudo P M G 
+
+12- Conjunto P M G 34 , 36 , 38 , 40 , 42
+
+13- Blusa de frio P M G
+
+14- Blazer P M G 
+ 
+15- Cintos P M G 
+
+16- Bolsas 
+
+17- Assessorios variados 
+
+tamanho do vestido - obrigatorio
+Tecido do vestido - opcional
+
+Cor predominante e secundária
+Branco, Preto, Amarelo, Azul, Azul-marinho, Bege, Cinza, Dourado, Laranja, Marrom, Prata, Rosa, Roxo, Verde, Vermelho, Violeta
+
+Estética:
+Batom
+Sombra 
+Iluminador 
+Base 
+Rímel 
+Bush 
+Pincel 
+Demaquilante 
+Esponjas 
+Cílios 
+Outros
+
+Cabelo
+Shampoo 
+Condicionador 
+Máscara de hidratação 
+Finalizadores
+
+
+
+1- produto:
+id
+Codigo de barras:
+Nome: 
+id:
+Departamento: Moda, Estética, Cabelo
+Categoria: Blusa, bolsa etc (fazer um grupoTipo para vincular com a tabela tipo tipo e fazer o mesmo esquema com a tabela tamanho) 
+Tipo: Foreing key produto.tipo references tipo.id
+tamanho: Foreing key produto.tamanho references tamanho.id
+cor: 
+Descricao:
+Quantidade: (Alerta de falta no estoque quando faltar)
+produto inativo
+fornecedor Foreing key produto.fornecedor references fornecedor.id
+fabricante:
+precoCusto(calcular como gasto) 
+preco de venda Foreing key produto.venda references venda.id
+Desconto - tabela vendas ||  ||  ||
+Acrescimo - tabela vendas ||  ||  ||
+
+2- pessoa
+id
+Nome:
+cpf:
+Endereço:
+sexo:
+data do cadastro
+email
+---------------------------------------------------------------
+3 funcionario
+id
+usuario
+senha
+email
+rg
+Regime: Contrato CLT
+Departamento
+Cargo
+Escolaridade
+Formação
+ctps
+data admissão
+data demissão
+Grupo de follha de pagamento: Quinzanal, Mensal, diario
+Matricula
+Beneficios(calcular como gasto)
+salario(calcular como gasto)
+Comissão(calcular como gasto)
+Expediente
+Nome Pai
+Nome da Mae
+Estado Civil
+Nacionalidade
+Naturalidade
+data nascimento
+nome - tabela pessoa
+id_pessoa
+
+
+
+5- Fornecedores
+id
+tipo
+id_produto
+
+
+6- Tipo
+id
+tipo: regata, etc
+
+7- Tamanho
+id
+tamanho
+
+8- vendas
+id
+id_servico
+id_produto
+id_cliente (colocar opcao "cliente sem cadastro" para caso o cliente queira comprar, mas nao queira se cadastrar)
+id_funcionario (o nome está na tabela pessoa)
+dataVenda
+dataEntrega(controle)
+formaPagamento (dinheiro, cartao de debido, cartao de credito, nota promissória)
+desconto
+acrescimo
+precoVenda
+
+
+9- Servico 
+id
+id_venda
+Tipo (Manicurie, Pedicure, Unha de gel, Manutenção, Escova, Luzes, Hidratacao, Corte, Maquiagem, Sombrancelha)
+Valor (será colocado manualmente) - tabela vendas
+
+10- contas
+id
+tipo(copasa, cemig, internet, telefone, aluguel, Outros)
+descricao
+valor
+valorLiquidado (sim nao)
+
+11- Controle de caixa
+id
+saldoCaixa(diminuir de acordo com pagamento a vista e retiradas no caixa, acrescentar de acordo que enjetem dinheiro no caixa)

@@ -15,16 +15,17 @@ public class TesteJPATelacionamento {
 		EntityManager em = new JPAUtil().getEntityManager();
 		
 		Conta conta = new Conta();
-		conta.setAgencia("0505");
-		conta.setBanco("Banamericano");
-		conta.setNumero("9876");
-		conta.setTitular("Rogerio");
+		conta.setAgencia("1105");
+		conta.setBanco("Bametindos");
+		conta.setNumero("9816");
+		conta.setTitular("Perna");
 		
 		Movimentacao movimentacao = new Movimentacao();
 		movimentacao.setData(Calendar.getInstance());
 		movimentacao.setDescricao("Cinema");
 		movimentacao.setTipo(TipoMovimentacao.SAIDA);
 		movimentacao.setValor(new BigDecimal("40.0"));
+		movimentacao.setConta(conta);
 		
 		em.getTransaction().begin();
 		em.persist(conta);
